@@ -1,0 +1,85 @@
+name: dairyB2b_management
+description: Dairy B2b Management App
+publish_to: "none"
+resolution: workspace
+version: 1.0.0
+
+environment:
+  sdk: ^3.6.0
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../packages/core
+  system_assets:
+    path: ../packages/system_assets
+  models:
+    path: ../packages/models
+  common:
+    path: ../packages/common
+  repo:
+    path: ../packages/repo
+  auth:
+    path: ../packages/auth
+  cupertino_icons: ^1.0.8
+  firebase_crashlytics: ^4.3.7
+  flutter_native_splash: ^2.4.6
+  firebase_app_check: ^0.3.2+7
+  shared_preferences: ^2.5.3
+  geocoding: ^4.0.0
+  smooth_page_indicator: ^1.2.1
+  table_calendar: ^3.2.0
+  geolocator: ^14.0.1
+  timeline_tile: ^2.0.0
+  flutter_launcher_icons: ^0.14.4
+  hooks_riverpod: ^2.6.1
+  flutter_hooks: ^0.21.2
+  firebase_auth: ^5.6.0
+  flutter_riverpod: ^2.6.1
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+  go_router: ^16.0.0
+  url_launcher: ^6.3.1
+  uuid: ^4.5.1
+  cloud_firestore: ^5.6.12
+  riverpod_annotation: ^2.6.1
+  syncfusion_flutter_xlsio: ^30.2.7
+  pdf: ^3.11.3
+  open_filex: ^4.7.0
+  path_provider: ^2.1.5
+  flutter_dotenv: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  freezed: ^3.0.6
+  build_runner: ^2.4.15
+  riverpod_generator: ^2.6.5
+  json_serializable: ^6.9.5
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/logo.png"
+  min_sdk_android: 21
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/logo.png"
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo.png
+  branding_bottom_padding: 24
+  color_dark: "#121212"
+
+  android_12:
+    image: assets/logo.png
+    icon_background_color: "#ffffff"
+    icon_background_color_dark: "#121212"
+  web: false

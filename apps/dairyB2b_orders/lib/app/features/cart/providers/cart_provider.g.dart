@@ -1,0 +1,24 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'cart_provider.dart';
+
+// **************************************************************************
+// RiverpodGenerator
+// **************************************************************************
+
+String _$cartHash() => r'1119ec8cb9bf332f82258961534e3ff9e9dd764a';
+
+/// See also [Cart].
+@ProviderFor(Cart)
+final cartProvider = AutoDisposeAsyncNotifierProvider<Cart, CartState>.internal(
+  Cart.new,
+  name: r'cartProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$cartHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$Cart = AutoDisposeAsyncNotifier<CartState>;
+// ignore_for_file: type=lint
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

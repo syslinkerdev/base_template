@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "452178060597",
+    "project_id": "dairyb2b-milk-sys-db2b-0-base",
+    "storage_bucket": "dairyb2b-milk-sys-db2b-0-base.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452178060597:android:5b2fd5e7c873bdfe99587c",
+        "android_client_info": {
+          "package_name": "com.dairyB2b.management"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsSBf-d3L2JUvepddrOUAq3Rkz6P1IC4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:452178060597:android:819e8db1084a866699587c",
+        "android_client_info": {
+          "package_name": "com.dairyB2b.orders"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsSBf-d3L2JUvepddrOUAq3Rkz6P1IC4A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

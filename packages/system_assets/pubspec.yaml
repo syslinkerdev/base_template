@@ -1,0 +1,27 @@
+name: system_assets
+description: Common assets shared across apps
+publish_to: "none"
+resolution: workspace
+version: 1.0.0
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.2.0
+  path: ^1.9.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+    - assets/images/svg/
+  # fonts:
+  #   - family: Cera Pro
+  #     fonts:
+  #       - asset: assets/fonts/Cera-Pro-Bold.otf
+  #       - asset: assets/fonts/Cera-Pro-Medium.otf
+  #       - asset: assets/fonts/Roboto-Medium.ttf

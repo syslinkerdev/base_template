@@ -1,0 +1,37 @@
+name: dairy_b2b_system
+description: A monorepo for apps and packages.
+publish_to: "none"
+version: 1.0.0
+
+environment:
+  sdk: ^3.6.0
+
+sdkPath: .fvm/flutter_sdk
+
+workspace:
+  - apps/dairyB2b_orders
+  - apps/dairyB2b_management
+  - packages/system_assets
+  - packages/models
+  - packages/common
+  - packages/core
+  - packages/repo
+  - packages/auth
+
+dev_dependencies:
+  melos: ^7.3.0
+
+melos:
+  scripts:
+    build:
+      run: dart run build_runner build --delete-conflicting-outputs
+      exec:
+        concurrency: 4
+      packageFilters:
+        dependsOn: build_runner
+
+    change-icons:
+      description: Regenerates launcher icons & splash screens for all apps
+      run: |
+        melos exec -- flutter pub run flutter_launcher_icons
+        melos exec -- flutter pub run flutter_native_splash:create

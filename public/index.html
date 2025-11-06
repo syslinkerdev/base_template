@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dairy B2B App Download</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <h1>🚀 Dairy B2B Apps</h1>
+    <p>Download the apps you need below</p>
+  </header>
+  <div class="card">
+    <h2>📱 Orders App</h2>
+    <p>For clients to place and manage milk orders.</p>
+    <a href="https://github.com/bharathram444/milk_system_releases/raw/main/dairy_b2b/order/order_android_arm64-v8a_v1.apk"
+      class="btn download-btn">Download Orders App</a>
+  </div>
+
+  <div class="card">
+    <h2>⚙️ Management App</h2>
+    <p>Restricted access - enter access code to unlock.</p>
+
+    <div class="input-container">
+      <span class="icon">🔒</span>
+      <input type="password" id="accessCode" class="code-input" placeholder="Enter access code" />
+    </div>
+
+    <a id="managementBtn"
+      href="https://github.com/bharathram444/milk_system_releases/raw/main/dairy_b2b/management/management_android_arm64-v8a_v1.apk"
+      class="btn download-btn disabled">
+      Download Management App
+    </a>
+  </div>
+
+  <footer>
+    <p>© 2025 Dairy B2B. All rights reserved.</p>
+  </footer>
+
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    ⏳ Preparing your download...
+  </div>
+
+  <script>
+    const correctCode = "1212";
+    const input = document.getElementById("accessCode");
+    const managementBtn = document.getElementById("managementBtn");
+    const overlay = document.getElementById("loadingOverlay");
+
+    // unlock management app
+    input.addEventListener("input", () => {
+      if (input.value === correctCode) {
+        managementBtn.classList.remove("disabled");
+      } else {
+        managementBtn.classList.add("disabled");
+      }
+    });
+
+    // handle download buttons
+    document.querySelectorAll(".download-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        if (btn.classList.contains("disabled")) {
+          e.preventDefault();
+          return;
+        }
+
+        overlay.style.display = "flex";
+
+        setTimeout(() => {
+          window.location.href = btn.href;
+          overlay.style.display = "none"; // hides in case download fails
+        }, 800);
+      });
+    });
+  </script>
+</body>
+
+</html>

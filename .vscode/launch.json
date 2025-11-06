@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Orders",
+      "request": "launch",
+      "type": "dart",
+      "program": "apps/dairyB2b_orders/lib/main.dart"
+    },
+    {
+      "name": "Management",
+      "request": "launch",
+      "type": "dart",
+      "program": "apps/dairyB2b_management/lib/main.dart"
+    },
+  ]
+}
