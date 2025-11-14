@@ -24,7 +24,7 @@
         android:maxSdkVersion="32" />
 
     <application
-        android:label="Diary B2B Orders"
+        android:label="Dairy B2B Orders"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
         android:requestLegacyExternalStorage="false"> <!-- Modern Android default is Scoped Storage,
