@@ -29,9 +29,3 @@ melos:
         concurrency: 4
       packageFilters:
         dependsOn: build_runner
-
-    change-icons:
-      description: Regenerates launcher icons & splash screens for all apps
-      run: |
-        melos exec -- flutter pub run flutter_launcher_icons
-        melos exec -- flutter pub run flutter_native_splash:create
