@@ -314,10 +314,10 @@ class FirestoreService {
     final downloadUrl = await handleAsyncError(
       title: 'Image upload failed',
       operation: () async {
-        final ref = storage.ref().child(fullPath);
-        final uploadTask = ref.putFile(imageFile);
+        final stoRef = storage.ref().child(fullPath);
+        final uploadTask = stoRef.putFile(imageFile);
         await uploadTask.whenComplete(() {});
-        return await ref.getDownloadURL();
+        return await stoRef.getDownloadURL();
       },
     );
 
@@ -329,10 +329,10 @@ class FirestoreService {
       title: 'Image delete failed',
       operation: () async {
         // Get a reference to the file in Firebase Storage
-        final ref = storage.ref().child(storagePath);
+        final stoRef = storage.ref().child(storagePath);
 
         // Delete the file
-        await ref.delete();
+        await stoRef.delete();
       },
     );
   }

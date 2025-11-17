@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:core/core.dart';
 
 Future<T> handleAsyncError<T>(
@@ -10,8 +12,8 @@ Future<T> handleAsyncError<T>(
     if (internetCheck == true) {
       rethrow;
     } else {
-      //  log("error from: $title , error: $e here");
-      print("error from: $title , error: $e here");
+      log("error from: $title , error: $e here");
+      // print("error from: $title , error: $e here");
       throw convertToAppException(title: title, exception: "$e here ");
     }
   }

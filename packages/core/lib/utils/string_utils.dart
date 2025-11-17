@@ -70,4 +70,26 @@ class StringUtils {
         length, (index) => letters.codeUnitAt(random.nextInt(letters.length))));
     return randomString;
   }
+
+  static String extractExtensionFromUrl(String url) {
+    try {
+      final uri = Uri.parse(url);
+
+      // Example uri.path:
+      // /v0/b/.../o/storage_root%2Favatars%2Fy46u6IwdJLUj06BMc8V24e0FTcP2.jpg
+      final decodedPath = Uri.decodeFull(uri.path);
+
+      // Get the last segment → "storage_root/avatars/xxx.jpg"
+      final fullLastSegment = decodedPath.split('/').last;
+
+      // Filename might still include folders if %2F decoded
+      final filename = fullLastSegment.split('/').last;
+
+      if (!filename.contains('.')) return '';
+
+      return filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+    } catch (_) {
+      return '';
+    }
+  }
 }

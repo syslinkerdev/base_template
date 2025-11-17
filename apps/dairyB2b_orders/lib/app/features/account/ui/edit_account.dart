@@ -156,11 +156,10 @@ class EditAccount extends HookConsumerWidget
 
       // ✅ Only if not client && avatar changed
       if (profile['role'] != Role.client && profile['avatar'] != avatar) {
+        final ext = StringUtils.extractExtensionFromUrl(profile['avatar']);
         // 1️⃣ Delete old
         await ref.read(firestoreServiceProvider).deleteImage(
-                storagePath: StoragePathManger.avatar(
-              name: '${profile['fName']}_${profile['lName']}',
-            ));
+            storagePath: '${StoragePathManger.avatar(name: uId)}.$ext');
 
         // 2️⃣ Upload new
         finalAdminAvatar = await ref.read(firestoreServiceProvider).uploadImage(
