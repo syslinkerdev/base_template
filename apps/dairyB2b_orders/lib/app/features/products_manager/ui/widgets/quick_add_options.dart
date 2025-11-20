@@ -107,12 +107,13 @@ class PackagingTypeItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(2),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         border: Border.all(
           color: appColors
               .cS(context)
-              .surfaceTint
+              .secondary
               .withValues(alpha: isSelected ? 1 : 0.5),
           width: isSelected ? 2 : 1.5,
         ),
@@ -123,23 +124,15 @@ class PackagingTypeItem extends StatelessWidget {
           _PackageIcon(isSelected: isSelected),
           gapW4,
           Expanded(
-            child: Text(
-              _truncatedName(item.label),
-              style: _nameTextStyle(context, item.label.length),
-            ),
+            child: Text(item.label,
+                style: TextStyles.h12Bold(context)?.copyWith(
+                    color: appColors.cS(context).surfaceTint,
+                    overflow: TextOverflow.ellipsis)),
           ),
         ],
       ),
     );
   }
-
-  String _truncatedName(String name) =>
-      name.length > 7 ? '${name.substring(0, 7)}..' : name;
-
-  TextStyle? _nameTextStyle(BuildContext context, int nameLength) =>
-      (nameLength > 7 ? TextStyles.h11Bold : TextStyles.h9Bold)
-          .call(context)
-          ?.copyWith(color: appColors.cS(context).inversePrimary);
 }
 
 class _PackageIcon extends StatelessWidget {
@@ -150,20 +143,16 @@ class _PackageIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(4),
-      margin: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+      padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: appColors
             .cS(context)
-            .surfaceTint
+            .inversePrimary
             .withValues(alpha: isSelected ? 0.8 : 0.2),
       ),
-      child: Icon(
-        Icons.border_all,
-        size: 21,
-        color: appColors.ms.black80(context),
-      ),
+      child: Icon(Icons.border_all,
+          size: 18, color: appColors.cS(context).surfaceTint),
     );
   }
 }

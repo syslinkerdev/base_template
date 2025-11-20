@@ -218,8 +218,8 @@ class UserWithOrderCard extends ConsumerWidget {
                             confirmBtnText: 'Yes',
                           );
                           if (shouldNavigate == true) {
-                            print(
-                                '🛍️ Creating new order for user ${user.fullName} ${userWithOrder.user.phoneNumber}');
+                            // print(
+                            // '🛍️ Creating new order for user ${user.fullName} ${userWithOrder.user.phoneNumber}');
                             ref.watch(adjustmentProvider.notifier).init(
                                 AdjustmentState.empty().copyWith(
                                     user: userWithOrder.user,

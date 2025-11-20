@@ -38,7 +38,7 @@ class GeneratorX extends _$GeneratorX {
       _updateCommentary('📥 Fetching today\'s orders...');
       final orders = await ref.read(
           OrdersStreamXProvider(forActualDelivery: forActualDelivery).future);
-      print('⚠️ Orders length ${orders.length}');
+      // print('⚠️ Orders length ${orders.length}');
 
       _updateCommentary('📦 Fetching product list...');
       final products = await ref.read(productsStreamXProvider.future);
@@ -56,8 +56,8 @@ class GeneratorX extends _$GeneratorX {
             if (product.isNotEmpty) {
               companyIds.add(product.brand.id);
             } else {
-              print(
-                  '⚠️ Product not found for item: ${item.productReference?.id}');
+              // print(
+              // '⚠️ Product not found for item: ${item.productReference?.id}');
             }
           }
         }
@@ -106,13 +106,13 @@ class GeneratorX extends _$GeneratorX {
           "📥 [1/8] Fetching today's orders for company: $companyId...");
       final orders = await ref.read(
           OrdersStreamXProvider(forActualDelivery: forActualDelivery).future);
-      print("[1/8] Fetched ${orders.length} orders");
+      // print("[1/8] Fetched ${orders.length} orders");
 
       // Step 2: Discounts
       _updateCommentary('💸 [2/8] Fetching global discount sections...');
       final discountSections =
           await ref.read(discountSectionsStreamXProvider.future);
-      print("[2/8] Discount sections fetched: ${discountSections.length}");
+      // print("[2/8] Discount sections fetched: ${discountSections.length}");
 
       final globalDiscounts = discountSections
           .firstWhere(
@@ -121,12 +121,12 @@ class GeneratorX extends _$GeneratorX {
             orElse: () => DiscountSection.empty(),
           )
           .nonDeleteDiscounts;
-      print("[2/8] Global discounts count: ${globalDiscounts.length}");
+      // print("[2/8] Global discounts count: ${globalDiscounts.length}");
 
       // Step 3: Catalog
       _updateCommentary('📚 [3/8] Fetching product catalog...');
       final products = await ref.read(productsStreamXProvider.future);
-      print("[3/8] Products fetched: ${products.length}");
+      // print("[3/8] Products fetched: ${products.length}");
 
       final fs = ref.read(firestoreServiceProvider);
 
@@ -139,7 +139,7 @@ class GeneratorX extends _$GeneratorX {
           products: products,
           now: now,
           forActualDelivery: forActualDelivery);
-      print("[4/8] Product lines built: ${productLines.length}");
+      // print("[4/8] Product lines built: ${productLines.length}");
 
       // Step 5: Build demand lines
       _updateCommentary('🛠 [5/8] Building demand lines...');
@@ -154,11 +154,11 @@ class GeneratorX extends _$GeneratorX {
           id: id,
           now: now,
           forActualDelivery: forActualDelivery);
-      print("[5/8] Demand lines built: ${demandLines.length}");
+      // print("[5/8] Demand lines built: ${demandLines.length}");
 
       if (productLines.isEmpty) {
         _updateCommentary('⚠️ No products found for $companyId. Skipping...');
-        print("[⚠️] No product lines found for $companyId");
+        // print("[⚠️] No product lines found for $companyId");
         return;
       }
 
@@ -177,8 +177,8 @@ class GeneratorX extends _$GeneratorX {
       final whoOrderedForThisCom = demandLines.map((d) => d.clientId).toSet();
       final companyName = productLines.first.companyName;
 
-      print(
-          "[6/8] Totals calculated: companyTotal=$companyTotal, afterDiscount=$companyTotalAfterDis");
+      // print(
+      // "[6/8] Totals calculated: companyTotal=$companyTotal, afterDiscount=$companyTotalAfterDis");
 
       // Step 7: MainOrder
       _updateCommentary('📝 [7/8] Updating main order document...');
@@ -188,7 +188,7 @@ class GeneratorX extends _$GeneratorX {
         converter: (s) =>
             s.data() == null ? null : MainOrder.fromJson(s.data()!),
       );
-      print("[7/8] Existing main order fetched: ${existing != null}");
+      // print("[7/8] Existing main order fetched: ${existing != null}");
 
       final companyEntry = CompanyEntry(
         companyId: companyId,
@@ -240,7 +240,7 @@ class GeneratorX extends _$GeneratorX {
         documentId: id,
         data: updated.toDocument(),
       );
-      print("[7a] Main order saved for $companyName");
+      // print("[7a] Main order saved for $companyName");
 
       // Step 8: Children
       _updateCommentary('📦 [8/8] Saving product & demand lines...');
@@ -265,12 +265,12 @@ class GeneratorX extends _$GeneratorX {
       }
 
       await fs.runBatchedWrites(operations);
-      print("[8/8] Product & demand lines saved successfully");
+      // print("[8/8] Product & demand lines saved successfully");
 
       _updateCommentary('✅ Done! Order generated for $companyName.');
-    } catch (e, st) {
-      print("❌ Error in _generateCompanyOrderCore: $e");
-      print(st);
+    } catch (e, _) {
+      // print("❌ Error in _generateCompanyOrderCore: $e");
+      // print(st);
       rethrow;
     }
   }
@@ -278,7 +278,7 @@ class GeneratorX extends _$GeneratorX {
   void _updateCommentary(String message) {
     // If state is loading or has data, replace with updated message
     state = AsyncData(message);
-    debugPrint('💬 $message');
+    // debugPrint('💬 $message');
   }
 
   Future<List<ProductLine>> _buildProductLines({

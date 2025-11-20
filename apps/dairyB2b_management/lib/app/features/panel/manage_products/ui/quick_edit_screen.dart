@@ -65,7 +65,7 @@ class QuickEditBody extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // //debugPrint('💥 Rebuilding widget QuickEditBody');
+    //debugPrint('💥 Rebuilding widget QuickEditBody');
 
     final productManager = ref.watch(manageProductProvider);
     final priceCtrl = useTextEditingController();
@@ -183,7 +183,7 @@ class QuickEditBody extends HookConsumerWidget {
                   iconFirst: false,
                   onPressed: () async {
                     //print('pric ---  ${priceCtrl.text}');
-                    // //print('dis --  ${globDis.value}');
+                    //print('dis --  ${globDis.value}');
                     //print('min ---  ${minBuyQtyCtrl.text}');
                     final manager = ref.watch(manageProductProvider.notifier);
                     await manager

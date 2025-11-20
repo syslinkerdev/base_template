@@ -21,25 +21,25 @@ void listenToOrders(BuildContext context, WidgetRef ref) {
 
       // Debug logging
       if (next.isLoading) {
-        print('🔄 [listenToOrders] OrderPro is loading...');
+        // print('🔄 [listenToOrders] OrderPro is loading...');
       }
 
       await next.maybeWhen(
         data: (_) async {
           final adjustmentData = ref.read(adjustmentProvider).value;
           if (adjustmentData == null) {
-            print(
-                '⚠️ [listenToOrders] adjustmentData is null, skipping UI updates.');
+            // print(
+            // '⚠️ [listenToOrders] adjustmentData is null, skipping UI updates.');
             return;
           }
 
           final mode = adjustmentData.mode ?? AdjustmentMode.newOrder;
           final user = adjustmentData.user;
 
-          print('✅ [listenToOrders] Order action successful.');
-          print('   → Mode: $mode');
-          print(
-              '   → User: ${user?.fullName ?? "Unknown"} (${user?.uid ?? "no uid"})');
+          // print('✅ [listenToOrders] Order action successful.');
+          // print('   → Mode: $mode');
+          // print(
+          // '   → User: ${user?.fullName ?? "Unknown"} (${user?.uid ?? "no uid"})');
 
           // ✅ Show success message
           showMessageSnackbar(
@@ -61,13 +61,13 @@ void listenToOrders(BuildContext context, WidgetRef ref) {
             final currentUserUid = await ref.read(appStateXProvider).uId;
 
             if (adminUid == currentUserUid) {
-              print('self order is happened here :::::');
+              // print('self order is happened here :::::');
               ref.invalidate(
                   doesOrderExistForNextDayProvider(uId: currentUserUid));
             }
             if (adminUid != null && adminUid.isNotEmpty) {
-              print(
-                  '➡️ [listenToOrders] Navigating to UsersWithOrdersList (adminUid: $adminUid)');
+              // print(
+              // '➡️ [listenToOrders] Navigating to UsersWithOrdersList (adminUid: $adminUid)');
               AppRoute.usersWithOrdersList.go(
                 context,
                 extra: UsersWithOrdersListArgs(
@@ -76,8 +76,8 @@ void listenToOrders(BuildContext context, WidgetRef ref) {
                 ),
               );
             } else {
-              print(
-                  '⚠️ [listenToOrders] adminUid is null or empty. Navigation skipped.');
+              // print(
+              // '⚠️ [listenToOrders] adminUid is null or empty. Navigation skipped.');
             }
           } else if (mode == AdjustmentMode.adjustment) {
             AppRoute.ordersAdjustmentList.go(context);
@@ -87,9 +87,9 @@ void listenToOrders(BuildContext context, WidgetRef ref) {
           // Debug non-data states
           if (next.isLoading) return;
           if (next is AsyncError) {
-            print('❌ [listenToOrders] Order operation failed: ${next.error}');
+            // print('❌ [listenToOrders] Order operation failed: ${next.error}');
           } else {
-            print('ℹ️ [listenToOrders] No actionable state change detected.');
+            // print('ℹ️ [listenToOrders] No actionable state change detected.');
           }
         },
       );

@@ -44,8 +44,8 @@ class RouteX {
 
   /// Retrieves the current route path
   static String getCurrentRoute(BuildContext context) {
-    // //print('topRoute ---- ${GoRouter.of(context).state?.topRoute?.path ?? '/'}');
-    // //print('uri ---- ${GoRouter.of(context).state?.uri.path ?? '/'}');
+    // print('topRoute ---- ${GoRouter.of(context).state?.topRoute?.path ?? '/'}');
+    // print('uri ---- ${GoRouter.of(context).state?.uri.path ?? '/'}');
     return GoRouter.of(context).state.uri.path;
   }
 }

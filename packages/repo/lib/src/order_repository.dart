@@ -63,8 +63,8 @@ extension OrderRepository on DairyB2bRepository {
           .orderBy(DbStandardFields.deliveryDate, descending: true),
     );
     // for (final mainOrder in response) {
-    //   //print(
-    //   // '📝 Main Order Time: ${mainOrder.createdAt} ${mainOrder.mainOrderId}');
+    //  print(
+    //   '📝 Main Order Time: ${mainOrder.createdAt} ${mainOrder.mainOrderId}');
     // }
 
     return response;
@@ -111,13 +111,13 @@ extension OrderRepository on DairyB2bRepository {
     );
 
     // if (results.isNotEmpty) {
-    //   //print('📦 User has placed an order.');
+    //   print('📦 User has placed an order.');
     //   for (final order in results) {
-    //     //print('📝 Order ID: ${order.orderId}');
-    //     //print('📝 Order Time: ${order.creationTime}');
+    //     print('📝 Order ID: ${order.orderId}');
+    //     print('📝 Order Time: ${order.creationTime}');
     //   }
     // } else {
-    //   //print('📦 No orders found for the user.');
+    //   print('📦 No orders found for the user.');
     // }
 
     return results.isNotEmpty;
@@ -140,7 +140,7 @@ extension OrderRepository on DairyB2bRepository {
   }
 
   Future<bool> doesOrderExistForNextDay({required String uId}) async {
-    print('⚡ Checking if user has placed order today $uId');
+    // print('⚡ Checking if user has placed order today $uId');
 
     final nextDay = DateTime.now().add(const Duration(days: 1));
 
@@ -162,7 +162,7 @@ extension OrderRepository on DairyB2bRepository {
     );
 
     final exists = result.isNotEmpty;
-    // //print('✅ Today order exists? $exists');
+    // print('✅ Today order exists? $exists');
     return exists;
   }
 
@@ -172,7 +172,6 @@ extension OrderRepository on DairyB2bRepository {
         : DateTime.now().add(const Duration(days: 1));
     final startOfDay = DateTime(day.year, day.month, day.day);
     final endOfDay = startOfDay.add(const Duration(days: 1));
-    print('object');
     final fromTimestamp = Timestamp.fromDate(startOfDay);
     final toTimestamp = Timestamp.fromDate(endOfDay);
 

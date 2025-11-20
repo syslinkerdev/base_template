@@ -183,7 +183,7 @@ class ClientsSBCard extends ConsumerWidget {
                 width: context.sizeOfWidth * 0.1,
                 height: context.sizeOfHeight * 0.05,
                 decoration: BoxDecoration(
-                  color: appColors.cS(context).surfaceTint,
+                  color: appColors.cS(context).inversePrimary,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Center(
@@ -196,11 +196,22 @@ class ClientsSBCard extends ConsumerWidget {
               ),
               gapW8,
               Expanded(
-                child: Text(
-                  smartBasket.basketName,
-                  style: TextStyles.h9Bold(context),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      smartBasket.basketName,
+                      style: TextStyles.h9Bold(context),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      smartBasket.basketId,
+                      style: TextStyles.h14Gray(context),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
               ),
               ButtonX(
@@ -209,9 +220,7 @@ class ClientsSBCard extends ConsumerWidget {
                   if (onSelect != null) await onSelect!(smartBasket);
                 },
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  side: const BorderSide(width: 1.2),
-                ),
+                    borderRadius: BorderRadius.circular(8.0)),
                 height: context.sizeOfHeight * 0.034,
                 labelStyle: TextStyles.h8Bold(context),
                 gap: const SizedBox.shrink(),
@@ -229,7 +238,7 @@ class ClientsSBCard extends ConsumerWidget {
                 for (final item in smartBasket.items.take(2)) ...[
                   Flexible(
                     child: Text(
-                      "• ${item.productName}",
+                      "• ${item.searchKey.shortKey}",
                       style: TextStyles.h13Bold(context),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

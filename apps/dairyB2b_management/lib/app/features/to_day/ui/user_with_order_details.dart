@@ -34,7 +34,7 @@ class UsersWithOrdersDetails extends HookConsumerWidget {
     bool canIGen = endTime != null && now.isAfter(endTime);
     final order = userWithOrder.order ?? OrderX.empty();
     // final ifOrderStatusAdjusted = order.status == OrderStatus.adjusted;
-    print('order.status ${order.status}');
+    // print('order.status ${order.status}');
     return ScaffoldX(
       wantLeading: true,
       title: forActualDelivery ? 'User & Adjusted Order' : 'User & Order',
@@ -167,11 +167,11 @@ class UsersWithOrdersDetails extends HookConsumerWidget {
                           data: (_) {
                             if (context.mounted) {
                               showMessageSnackbar(
-                                context: context,
-                                message: 'Order deleted successfully of ' +
-                                    userWithOrder.user.fullName,
-                                type: SnackBarType.success,
-                              );
+                                  context: context,
+                                  message: 'Order deleted successfully of ' +
+                                      userWithOrder.user.fullName,
+                                  type: SnackBarType.success,
+                                  maxLines: 2);
                               context.close();
                             }
                           },
@@ -188,7 +188,7 @@ class UsersWithOrdersDetails extends HookConsumerWidget {
                           },
                         );
                       } else {
-                        print('⚠️ Delete cancelled or no order to delete');
+                        // print('⚠️ Delete cancelled or no order to delete');
                       }
                     } else {
                       final formatted = DFU.timeOnly12h(endTime);
@@ -253,7 +253,7 @@ class TextAndButtonHolder extends StatelessWidget {
             labelColor: buttonColor ?? context.colorScheme.primary,
             iconColor: buttonColor ?? context.colorScheme.primary,
             loadingIconColor: buttonColor ?? context.colorScheme.primary,
-            backgroundColor: Colors.transparent,
+            backgroundColor: appColors.ms.white(context),
             onPressed: onButtonPressed,
           ),
         ],

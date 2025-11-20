@@ -33,7 +33,9 @@ FutureOr<bool> didUserOrder(Ref ref, {required String uId}) {
 // doesOrderExistForTodayProvider
 @Riverpod(keepAlive: true)
 FutureOr<bool> doesOrderExistForNextDay(Ref ref, {required String uId}) async =>
-    await ref.read(dairyB2bRepositoryProvider).doesOrderExistForNextDay(uId: uId);
+    await ref
+        .read(dairyB2bRepositoryProvider)
+        .doesOrderExistForNextDay(uId: uId);
 
 @Riverpod(keepAlive: true)
 class OrdersStreamX extends _$OrdersStreamX {
@@ -47,13 +49,13 @@ class OrdersStreamX extends _$OrdersStreamX {
       final filtered = initial.whereType<OrderX>().toList();
       state = AsyncValue.data(filtered);
 
-      // //print(
+      // print(
       //     '✅ OrdersStreamX initial loaded: ${state.value?.length} orders');
 
       repo.fetchOrdersStream(forActualDelivery: forActualDelivery).listen(
         (orders) {
           state = AsyncValue.data(orders.whereType<OrderX>().toList());
-          // //print(
+          // print(
           //     '📡 OrdersStreamX updated: ${(state.valueOrNull?.length ?? 0)} orders');
         },
         onError: (err) {
@@ -81,7 +83,7 @@ class MainOrderStream extends _$MainOrderStream {
           .first;
       state = AsyncValue.data(initial);
 
-      // //print(
+      // print(
       //     '✅ fetchMainOrderStream initial loaded: ${state.value?.length} orders');
 
       repo
@@ -89,7 +91,7 @@ class MainOrderStream extends _$MainOrderStream {
           .listen(
         (mainOrder) {
           state = AsyncValue.data(mainOrder);
-          // //print(
+          // print(
           //     '📡 fetchMainOrderStream updated: ${(state.valueOrNull?.length ?? 0)} orders');
         },
         onError: (err) {
@@ -118,7 +120,7 @@ class ProductLinesStream extends _$ProductLinesStream {
       final filtered = initial.whereType<ProductLine>().toList();
       state = AsyncValue.data(filtered);
 
-      // //print(
+      // print(
       //     '✅ ProductLinesStream initial loaded: ${state.value?.length} orders');
 
       repo
@@ -126,7 +128,7 @@ class ProductLinesStream extends _$ProductLinesStream {
           .listen(
         (orders) {
           state = AsyncValue.data(orders.whereType<ProductLine>().toList());
-          // //print(
+          // print(
           //     '📡 ProductLinesStream updated: ${(state.valueOrNull?.length ?? 0)} orders');
         },
         onError: (err) {
@@ -155,7 +157,7 @@ class DemandLinesStream extends _$DemandLinesStream {
       final filtered = initial.whereType<DemandLine>().toList();
       state = AsyncValue.data(filtered);
 
-      // //print(
+      // print(
       //     '✅ DemandLinesStream initial loaded: ${state.value?.length} orders');
 
       repo
@@ -163,7 +165,7 @@ class DemandLinesStream extends _$DemandLinesStream {
           .listen(
         (orders) {
           state = AsyncValue.data(orders.whereType<DemandLine>().toList());
-          // //print(
+          // print(
           //     '📡 DemandLinesStream updated: ${(state.valueOrNull?.length ?? 0)} orders');
         },
         onError: (err) {

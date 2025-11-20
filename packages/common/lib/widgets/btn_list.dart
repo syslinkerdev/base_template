@@ -58,7 +58,7 @@ class BtnList<T> extends HookConsumerWidget {
               border: Border.all(
                 color: appColors
                     .cS(context)
-                    .surfaceTint
+                    .primary
                     .withValues(alpha: isSelected ? 1 : 0.5),
                 width: isSelected ? 2 : 1.5,
               ),

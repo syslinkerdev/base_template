@@ -117,7 +117,7 @@ class ViewProducts extends HookConsumerWidget {
       appBarActions: [
         wholeProducts.maybeWhen(
           error: (error, stackTrace) {
-            print(error.toString());
+            // print(error.toString());
             return SizedBox();
           },
           orElse: () => SizedBox(),

@@ -20,7 +20,7 @@ class YourAdmin extends ConsumerWidget {
         padding: const EdgeInsets.all(16.0),
         child: adminFetcher.when(
             data: (admin) {
-              print('admin ------- $admin');
+              // print('admin ------- $admin');
               if (admin == null) {
                 return Center(
                   child: Column(
@@ -87,7 +87,7 @@ class YourAdmin extends ConsumerWidget {
               );
             },
             error: (error, stackTrace) {
-              print(stackTrace);
+              // print(stackTrace);
               return ErrorScreen(
                   error: error,
                   onRetry: () => ref

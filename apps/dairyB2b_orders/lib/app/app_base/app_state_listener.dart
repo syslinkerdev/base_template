@@ -127,7 +127,7 @@ class AppStateListener {
 
     // // If user is deleted according to doc field, treat similarly
     // if (user.status == UserStatus.deleted) {
-    //   //print('🗑️ User doc marked deleted — cancelling listener and marking deleted');
+    //   print('🗑️ User doc marked deleted — cancelling listener and marking deleted');
     //   _cancelUserListener();
     //   ref.read(appStateXProvider.notifier).markDeleted(user.uid);
     //   return;

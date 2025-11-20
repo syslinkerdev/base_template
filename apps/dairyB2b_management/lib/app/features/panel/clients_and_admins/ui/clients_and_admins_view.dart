@@ -165,8 +165,8 @@ class ClientsAndAdminsView extends HookConsumerWidget {
                               shape: BoxShape.circle,
                               color: appColors
                                   .cS(context)
-                                  .surfaceTint
-                                  .withValues(alpha: isSelected ? 0.8 : 0.2),
+                                  .inversePrimary
+                                  .withValues(alpha: isSelected ? 0.9 : 0.3),
                             ),
                             child: Icon(item.icon, size: 14),
                           ),
@@ -175,7 +175,7 @@ class ClientsAndAdminsView extends HookConsumerWidget {
                             child: Text(
                               item.label,
                               style: TextStyles.h15Bold(context)?.copyWith(
-                                  color: appColors.cS(context).inversePrimary),
+                                  color: appColors.cS(context).surfaceTint),
                             ),
                           ),
                         ],

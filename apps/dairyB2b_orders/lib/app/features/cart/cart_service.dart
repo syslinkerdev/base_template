@@ -399,11 +399,11 @@ class CartService {
     required List<Product> finalCart,
     String? clientUid,
   }) async {
-    // //print('applyUserDiscounts');
+    // print('applyUserDiscounts');
     // Check if finalCart is unchanged; if yes, return the cached version
     if (_cachedFinalCart != null &&
         _areCartsEqual(_cachedFinalCart!, finalCart)) {
-      // //print('Returning cached finalCart');
+      // print('Returning cached finalCart');
       return _cachedFinalCart!;
     }
 
@@ -417,11 +417,11 @@ class CartService {
         (discount) => discount.productReference?.id == product.id,
         orElse: () => Discount.empty(),
       );
-      // //print(applicableDiscount.discount);
+      // print(applicableDiscount.discount);
       final discountedPrice =
           (product.price - applicableDiscount.discount.toDouble())
               .clamp(0, double.infinity);
-      // //print(discountedPrice);
+      // print(discountedPrice);
 
       return product.copyWith(priceAfterDiscount: discountedPrice.toDouble());
     }).toList();

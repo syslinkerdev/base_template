@@ -90,7 +90,7 @@ class AdjustmentScreen extends HookConsumerWidget with CommonValidator {
       ),
       bottomNavigationBar: adjustment.when(
         loading: () {
-          print('🌀 adjustment.when → loading state triggered');
+          // print('🌀 adjustment.when → loading state triggered');
           return ShimmerX(
             width: context.sizeOfWidth,
             height: context.sizeOfHeight,
@@ -127,8 +127,8 @@ class AdjustmentScreen extends HookConsumerWidget with CommonValidator {
           );
         },
         error: (err, st) {
-          print('❌ adjustment.when → error: $err');
-          print('📜 StackTrace: $st');
+          // print('❌ adjustment.when → error: $err');
+          // print('📜 StackTrace: $st');
           return const SizedBox.shrink();
         },
       ),

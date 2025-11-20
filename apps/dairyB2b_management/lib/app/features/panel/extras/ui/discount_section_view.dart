@@ -205,8 +205,8 @@ class DiscountSectionView extends HookConsumerWidget {
                         confirmBtnText: 'Delete',
                       );
                       if (shouldDelete == true) {
-                        var curr = RouteX.getCurrentRoute(context);
-                        print('curr ${curr}');
+                        // var curr = RouteX.getCurrentRoute(context);
+                        // print('curr ${curr}');
 
                         ref
                             .read(discountSectionBuilderProvider.notifier)
@@ -220,8 +220,8 @@ class DiscountSectionView extends HookConsumerWidget {
                                       'Discounts Section Deleted Successfully',
                                   type: SnackBarType.success,
                                   maxLines: 2);
-                              var curr = RouteX.getCurrentRoute(context);
-                              print('curr ${curr}');
+                              // var curr = RouteX.getCurrentRoute(context);
+                              // print('curr ${curr}');
                               context.close();
                             }
                           },

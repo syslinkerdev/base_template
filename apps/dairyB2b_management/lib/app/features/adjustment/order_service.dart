@@ -257,14 +257,14 @@ class OrderService {
 
         // 🧹 CASE 1: Newly added item (origQty == 0) now deleted → skip completely
         if (newPro == null && prevItem.origQty == 0) {
-          print(
-              '🧹 Removing new item that was deleted: ${prevItem.productName}');
+          // print(
+          // '🧹 Removing new item that was deleted: ${prevItem.productName}');
           continue;
         }
 
         // 🗑 CASE 2: Existing old item now deleted → mark as Deleted
         if (newPro == null) {
-          print('❌ Marking old item as deleted: ${prevItem.productName}');
+          // print('❌ Marking old item as deleted: ${prevItem.productName}');
           allProducts.add(prevItem.copyWith(
             adjQty: 0,
             adjLabel: 'Deleted',
@@ -277,8 +277,8 @@ class OrderService {
 
         // 🧹 CASE 4: Previously new item reset to 0 → skip it
         if (prevItem.origQty == 0 && userQty == 0) {
-          print(
-              '🧹 Removing newly added item that was reset to 0: ${newPro.name}');
+          // print(
+          // '🧹 Removing newly added item that was reset to 0: ${newPro.name}');
           continue;
         }
 
@@ -297,8 +297,8 @@ class OrderService {
         final adjLabelX = userQty == 0 ? 'Deleted' : adjLabel;
         final adjQtyX = userQty == 0 ? 0 : adjQty;
 
-        print(
-            '📦 Updating item: ${newPro.name}, userQty=$userQty, origQty=${prevItem.origQty}, adjQty=$adjQtyX, adjLabel=$adjLabelX');
+        // print(
+        // '📦 Updating item: ${newPro.name}, userQty=$userQty, origQty=${prevItem.origQty}, adjQty=$adjQtyX, adjLabel=$adjLabelX');
 
         allProducts.add(CartItem(
           origQty: prevItem.origQty,
@@ -320,7 +320,7 @@ class OrderService {
       if (!prevIds.contains(pro.id)) {
         final userQty = pro.userSideQuantity ?? 0;
         if (userQty == 0) {
-          print('⚠️ Skipping new item with 0 qty: ${pro.name}');
+          // print('⚠️ Skipping new item with 0 qty: ${pro.name}');
           continue; // ✅ Prevents accidental 0-qty new entries
         }
 
@@ -345,7 +345,7 @@ class OrderService {
       }
     }
 
-    print('✅ Final prepared cart items count: ${allProducts.length}');
+    // print('✅ Final prepared cart items count: ${allProducts.length}');
     return allProducts;
   }
 
@@ -374,7 +374,7 @@ class OrderService {
   }
 
   void _debugOrder(String label, OrderX order) {
-    print('✅ $label ------------------------');
-    // print('OrderX: ${order.toJson()}');
+    // print('✅ $label ------------------------');
+    // // print('OrderX: ${order.toJson()}');
   }
 }

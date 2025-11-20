@@ -44,15 +44,15 @@ class PopUpDropdown<T> extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(100),
-          border:
-              Border.all(color: appColors.cS(context).surfaceTint, width: 2),
+          border: Border.all(color: colorX, width: 2),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
               value != null ? itemLabel(value!) : (hintText ?? 'Select'),
-              style: TextStyles.h14Bold(context)?.copyWith(color: colorX),
+              style: TextStyles.h14Bold(context)
+                  ?.copyWith(color: appColors.cS(context).surfaceTint),
             ),
             gapW8,
             Icon(Icons.keyboard_arrow_down_rounded, size: 21, color: colorX),

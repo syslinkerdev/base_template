@@ -106,7 +106,7 @@ class AddToCartBtn extends HookConsumerWidget {
                 ? TextStyles.h8Bold(context)
                     ?.copyWith(color: appColors.ms.whiteSwNero(context))
                 : TextStyles.h14Bold(context)
-                    ?.copyWith(color: appColors.cS(context).primaryFixedDim),
+                    ?.copyWith(color: appColors.cS(context).surfaceTint),
           ),
         ),
       ),
@@ -176,15 +176,17 @@ class AddToCartBtn extends HookConsumerWidget {
             left: icon == Icons.remove ? const Radius.circular(6) : Radius.zero,
             right: icon == Icons.add ? const Radius.circular(6) : Radius.zero,
           ),
-          color: (color ?? appColors.cS(context).primaryFixedDim)
-              .withValues(alpha: 0.2),
+          color: wantBg
+              ? null
+              : (color ?? appColors.cS(context).primaryFixedDim)
+                  .withValues(alpha: 0.2),
         ),
         child: Icon(
           icon,
           size: size * 0.5,
           color: wantBg
               ? appColors.ms.whiteSwNero(context)
-              : (color ?? appColors.cS(context).primaryFixedDim),
+              : (color ?? appColors.cS(context).surfaceTint),
         ),
       ),
     );

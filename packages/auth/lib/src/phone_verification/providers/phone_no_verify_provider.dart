@@ -65,12 +65,12 @@ class PhoneNoVerify extends _$PhoneNoVerify {
   }) async {
     state = const AsyncLoading();
     _updateState(longLoading: true);
-    print('🔹 verifyOtpCode started for OTP: $otpCode');
+    // print('🔹 verifyOtpCode started for OTP: $otpCode');
 
     state = await AsyncValue.guard(() async {
       try {
         final verificationId = state.value?.verificationId;
-        print('🔹 Current verificationId: $verificationId');
+        // print('🔹 Current verificationId: $verificationId');
         if (verificationId == null) {
           throw convertToAppException(
             title: 'Invalid verification ID',
@@ -78,48 +78,48 @@ class PhoneNoVerify extends _$PhoneNoVerify {
           );
         }
 
-        print('🔹 Verifying OTP with service...');
+        // print('🔹 Verifying OTP with service...');
         await ref
             .read(phoneNoVerifyServiceProvider)
             .verifyOtpCode(verificationId: verificationId, otpCode: otpCode);
-        print('✅ OTP verified successfully');
+        // print('✅ OTP verified successfully');
 
         final fullPhone = "+91${state.value?.phoneNumber}";
-        print('🔹 Full phone number: $fullPhone');
+        // print('🔹 Full phone number: $fullPhone');
 
         final dairyB2bRepo = ref.read(dairyB2bRepositoryProvider);
         final allPhoneNos = await dairyB2bRepo.fetchPhoneNos();
         final deletedPhoneNos = await dairyB2bRepo.fetchUniqueDeletedPhoneNos();
-        print('🔹 All phone numbers: $allPhoneNos');
-        print('🔹 Deleted phone numbers: $deletedPhoneNos');
+        // print('🔹 All phone numbers: $allPhoneNos');
+        // print('🔹 Deleted phone numbers: $deletedPhoneNos');
 
         if (allPhoneNos.contains(fullPhone)) {
-          print('🔹 Phone exists in active users'); 
+          // print('🔹 Phone exists in active users');
           final user = await dairyB2bRepo.fetchUserByComparisonPhone(
               phoneNumber: fullPhone);
           if (user != null && user.hashedPassword.containsValidValue) {
-            print('✅ User found, calling onUserPresent');
+            // print('✅ User found, calling onUserPresent');
             onUserPresent.call(user);
           } else {
-            print(
-                '⚠️ User found but password invalid or null, calling onUserNotPresent');
+            // print(
+            // '⚠️ User found but password invalid or null, calling onUserNotPresent');
             onUserNotPresent();
           }
         } else if (deletedPhoneNos.contains(fullPhone)) {
-          print('🔹 Phone exists in deleted users');
+          // print('🔹 Phone exists in deleted users');
           final deletedUser =
               await dairyB2bRepo.fetchLatestDeletedUserByPhone(fullPhone);
-          print('🔹 Deleted user: ${deletedUser?.firstName}');
+          // print('🔹 Deleted user: ${deletedUser?.firstName}');
           final currentUid =
               await ref.read(phoneNoVerifyServiceProvider).currentUser?.uid;
-          print('🔹 Current UID: $currentUid');
+          // print('🔹 Current UID: $currentUid');
 
           if (deletedUser != null && currentUid == deletedUser.uid) {
-            print(
-                '✅ Deleted user matches current UID, calling onDeletedUserFound');
+            // print(
+            // '✅ Deleted user matches current UID, calling onDeletedUserFound');
             onDeletedUserFound.call(deletedUser);
           } else if (deletedUser != null && currentUid != deletedUser.uid) {
-            print('⚠️ Deleted user UID mismatch, archiving old user');
+            // print('⚠️ Deleted user UID mismatch, archiving old user');
             final archivedUser = deletedUser.copyWith(replacedBy: currentUid);
             await ref.read(firestoreServiceProvider).setDocument(
                   collectionPath: DbPathManager.deletedUsers(),
@@ -128,18 +128,18 @@ class PhoneNoVerify extends _$PhoneNoVerify {
                 );
             onUserNotPresent();
           } else {
-            print('⚠️ Deleted user not found, calling onUserNotPresent');
+            // print('⚠️ Deleted user not found, calling onUserNotPresent');
             onUserNotPresent();
           }
         } else {
-          print('⚠️ Phone not found anywhere, calling onUserNotPresent');
+          // print('⚠️ Phone not found anywhere, calling onUserNotPresent');
           onUserNotPresent();
         }
 
         return state.value!;
-      } catch (e, st) {
-        print('❌ Error in verifyOtpCode: $e');
-        print('Stack trace: $st');
+      } catch (e, _) {
+        // print('❌ Error in verifyOtpCode: $e');
+        // print('Stack trace: $st');
         _updateState(longLoading: false);
         rethrow;
       }

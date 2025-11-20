@@ -16,23 +16,23 @@ class OrderPro extends _$OrderPro {
     required UserX user,
     OrderX? previousOrder,
   }) async {
-    print('🟣 [OrderPro] handleOrderAction called with mode: $mode');
-    print('📦 [OrderPro] items count: ${items.length}');
-    print('👤 [OrderPro] user: ${user.uid}');
+    // print('🟣 [OrderPro] handleOrderAction called with mode: $mode');
+    // print('📦 [OrderPro] items count: ${items.length}');
+    // print('👤 [OrderPro] user: ${user.uid}');
 
     state = const AsyncLoading();
 
     state = await AsyncValue.guard(() async {
       final orderService = ref.read(orderServiceProvider);
-      print('⚙️ [OrderPro] Using orderService: $orderService');
+      // print('⚙️ [OrderPro] Using orderService: $orderService');
 
       switch (mode) {
         case AdjustmentMode.newOrder:
-          print('🆕 [OrderPro] Placing new order...');
+          // print('🆕 [OrderPro] Placing new order...');
           await orderService.placeOrder(orderedProducts: items, user: user);
           break;
         case AdjustmentMode.modify:
-          print('✏️ [OrderPro] Modifying order...');
+          // print('✏️ [OrderPro] Modifying order...');
           if (previousOrder == null) {
             throw Exception('Previous order must be provided for modify mode');
           }
@@ -40,7 +40,7 @@ class OrderPro extends _$OrderPro {
               orderedProducts: items, user: user, previousOrder: previousOrder);
           break;
         case AdjustmentMode.adjustment:
-          print('⚖️ [OrderPro] Adjusting order...');
+          // print('⚖️ [OrderPro] Adjusting order...');
           if (previousOrder == null) {
             throw Exception(
                 'Previous order must be provided for adjustment mode');

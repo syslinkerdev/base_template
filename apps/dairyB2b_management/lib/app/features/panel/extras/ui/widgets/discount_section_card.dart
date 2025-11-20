@@ -32,7 +32,7 @@ class DiscountSectionCard extends StatelessWidget {
                   width: context.sizeOfWidth * 0.1,
                   height: context.sizeOfHeight * 0.05,
                   decoration: BoxDecoration(
-                      color: appColors.cS(context).surfaceTint,
+                      color: appColors.cS(context).inversePrimary,
                       borderRadius: BorderRadius.circular(8)),
                   child: Center(
                     child: Text(

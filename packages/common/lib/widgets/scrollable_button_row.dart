@@ -88,7 +88,7 @@ class _ScrollableButtonRowState extends State<ScrollableButtonRow> {
                     child: Text(
                       item.label,
                       style: TextStyles.h15Bold(context)?.copyWith(
-                        color: appColors.cS(context).inversePrimary,
+                        color: appColors.cS(context).surfaceTint,
                       ),
                     ),
                   ),

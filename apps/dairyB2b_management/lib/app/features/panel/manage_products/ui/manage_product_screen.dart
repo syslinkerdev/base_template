@@ -18,7 +18,7 @@ class ManageProductScreen extends HookConsumerWidget {
   const ManageProductScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint('💥 Rebuilding widget ManageProductScreen');
+    // debugPrint('💥 Rebuilding widget ManageProductScreen');
 
     final productManager = ref.watch(manageProductProvider);
 

@@ -55,16 +55,13 @@ class OtpInputScreen extends HookConsumerWidget with SignInValidator {
             OtpButtons(
               onPressed: () => submitOtpCode(
                   otpCode: otpController.text,
-                  verifyOtpCode: () {
-                    print('object');
-                    return verifyNotifier.verifyOtpCode(
-                      otpCode: otpController.text,
-                      onUserPresent: (user) => onUserPresent(user, ref),
-                      onUserNotPresent: () => onUserNotPresent(ref),
-                      onDeletedUserFound: (deletedUser) =>
-                          onDeletedUserFound(deletedUser, ref),
-                    );
-                  }),
+                  verifyOtpCode: () => verifyNotifier.verifyOtpCode(
+                        otpCode: otpController.text,
+                        onUserPresent: (user) => onUserPresent(user, ref),
+                        onUserNotPresent: () => onUserNotPresent(ref),
+                        onDeletedUserFound: (deletedUser) =>
+                            onDeletedUserFound(deletedUser, ref),
+                      )),
               resendCode: () {
                 if (phoneNumber != null) {
                   verifyNotifier.verifyPhoneNumber(

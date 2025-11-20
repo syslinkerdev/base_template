@@ -21,7 +21,7 @@ Future<void> bootstrap(Widget Function() createApp) async {
 
   // 🔹 Load Environment Variables
   await EnvLoader.load(); // Load from .env
-  debugPrint("✅ Loaded env for: ${AppEnv.appName}");
+  // debugPrint("✅ Loaded env for: ${AppEnv.appName}");
 
   // 🔹 Firebase Init
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

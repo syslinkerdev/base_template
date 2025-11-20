@@ -188,7 +188,7 @@ class ProductsBody extends HookConsumerWidget {
                   color: appColors
                       .cS(context)
                       .surfaceTint
-                      .withValues(alpha: isSelected ? 0.8 : 0.2),
+                      .withValues(alpha: isSelected ? 0.6 : 0.2),
                 ),
                 child: SizedBox(
                   height: 16,
@@ -200,8 +200,8 @@ class ProductsBody extends HookConsumerWidget {
                 padding: const EdgeInsets.only(left: 2, right: 6),
                 child: Text(
                   item.label,
-                  style: TextStyles.h15Bold(context)?.copyWith(
-                      color: appColors.cS(context).inversePrimary),
+                  style: TextStyles.h15Bold(context)
+                      ?.copyWith(color: appColors.cS(context).surfaceTint),
                 ),
               ),
             ],

@@ -17,13 +17,12 @@ class HistoryOrderCard extends StatelessWidget {
           children: [
             // basic image and orderId
             Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: 48,
                   height: 50,
                   decoration: BoxDecoration(
-                      color: appColors.cS(context).primaryContainer,
+                      color: appColors.cS(context).inversePrimary,
                       borderRadius: BorderRadius.circular(8)),
                   child: Center(
                     child: Text(

@@ -35,7 +35,7 @@ class ProductMakerScreen extends HookConsumerWidget {
     if (mPro == null) {
       return const Center(child: Text('null  -- empty list - Ghost'));
     }
-    print('pro maker screen cate : ${mPro.product?.category}');
+    // print('pro maker screen cate : ${mPro.product?.category}');
     // 👇 DynamicList controllers
     final brandController = DynamicListController<Brand>(
         initialValue: nullIfEmpty<Brand>(mPro.product?.brand));
@@ -46,7 +46,7 @@ class ProductMakerScreen extends HookConsumerWidget {
     final packagingController = DynamicListController<PackagingType>();
     final productTypeController = DynamicListController<ProductType>(
         initialValue: nullIfEmpty<ProductType>(mPro.product?.productType));
-    print('categoryController -- ${categoryController.value.toString()}');
+    // print('categoryController -- ${categoryController.value.toString()}');
     return WillPopScope(
       onWillPop: () async {
         if (secondSelection) {
@@ -136,7 +136,7 @@ class ProductMakerScreen extends HookConsumerWidget {
                         : makerX.maker!.categories,
                     gridCrossAxisCount: 4,
                     itemBuilder: (context, item, isSelected) {
-                      print('isSelected $isSelected');
+                      // print('isSelected $isSelected');
                       if (item.isEmpty)
                         return AddButton(isSelected: isSelected);
                       return ItemCard(

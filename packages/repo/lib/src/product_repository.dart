@@ -6,7 +6,7 @@ extension ProductRepository on DairyB2bRepository {
         collectionPath: DbPathManager.products(),
         converter: (snapshot) {
           final raw = snapshot.data();
-          // //print('🔥 Raw: $raw');
+          // print('🔥 Raw: $raw');
           final product = Product.fromJson(raw!);
           return product;
         },
@@ -20,7 +20,7 @@ extension ProductRepository on DairyB2bRepository {
       fieldValues: ids,
       converter: (snapshot) => Product.fromJson(snapshot.data()),
     );
-    // //print('response $response');
+    // print('response $response');
     return response;
   }
 
@@ -29,7 +29,7 @@ extension ProductRepository on DairyB2bRepository {
         collectionPath: DbPathManager.discountSections(),
         converter: (snapshot) {
           final raw = snapshot.data();
-          // //print('🔥 Raw DiscountSection: $raw');
+          // print('🔥 Raw DiscountSection: $raw');
           final section = DiscountSection.fromJson(raw!);
           return section;
         },

@@ -198,7 +198,7 @@ class ButtonX extends HookWidget {
               side: BorderSide(
                   color: borderColor ?? context.colorScheme.primary, width: 2)),
           labelStyle: labelStyle ?? TextStyles.h7(context),
-          backgroundColor: Colors.transparent,
+          backgroundColor: appColors.ms.white(context),
         );
 
   /// Handles the button press by setting the loading state, executing the
@@ -313,10 +313,9 @@ class ButtonX extends HookWidget {
                 width: scale == false ? totalWidth : context.sizeOfWidth,
                 child: Center(
                   child: SpinKitThreeBounce(
-                    color:
-                        loadingIconColor ?? ColorX.instance.ms.white(context),
-                    size: 18, // Consider making this customizable
-                  ),
+                      color:
+                          loadingIconColor ?? ColorX.instance.ms.white(context),
+                      size: 18),
                 ),
               )
             : scale == false

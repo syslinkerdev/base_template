@@ -64,7 +64,7 @@ Future<List<ProductWithDiscount>> filteredProductsStream(
     );
   }).toList();
 
-  //print('🎯 Final productWithDiscounts count: ${productWithDiscounts.length}');
+  // print('🎯 Final productWithDiscounts count: ${productWithDiscounts.length}');
   return productWithDiscounts;
 }
 
@@ -74,34 +74,34 @@ class ForJsonXX extends _$ForJsonXX {
   FutureOr<void> build() {}
 
   Future<void> makeJsonProPage(List<Product> products) async {
-    print("▶️ Starting makeJsonProPage...");
+    // print("▶️ Starting makeJsonProPage...");
 
     // 1. Get products from provider
-    print("⏳ Fetching products from provider...");
-    print("✅ Fetched ${products.length} products");
+    // print("⏳ Fetching products from provider...");
+    // print("✅ Fetched ${products.length} products");
 
     // 2. Convert to JSON List
-    print("🔄 Converting products to JSON...");
+    // print("🔄 Converting products to JSON...");
     final jsonList = products.map((p) => p.toJson()).toList();
-    print("✅ Converted to JSON list with ${jsonList.length} items");
+    // print("✅ Converted to JSON list with ${jsonList.length} items");
 
     final jsonString = const JsonEncoder.withIndent('  ').convert(jsonList);
-    print("📝 JSON String generated (length: ${jsonString.length})");
+    // print("📝 JSON String generated (length: ${jsonString.length})");
 
     // 3. Get app documents directory
 
     // 4. Write file
-    print("💾 Products JSON written to file");
+    // print("💾 Products JSON written to file");
     final dir = await getDownloadsDirectory();
-    print("📂 Documents directory: ${dir?.path}");
+    // print("📂 Documents directory: ${dir?.path}");
     if (dir == null) throw Exception("Download directory not available");
 
     final file = File("${dir.path}/products.json");
-    print("📄 File path set: ${file.path}");
+    // print("📄 File path set: ${file.path}");
     await file.writeAsString(jsonString, flush: true);
     await OpenFilex.open(file.path);
 
     // 5. Confirm
-    print('🎉 Done! Products JSON saved at: ${file.path}');
+    // print('🎉 Done! Products JSON saved at: ${file.path}');
   }
 }

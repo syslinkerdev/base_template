@@ -9,7 +9,7 @@ class ProductsStreamX extends _$ProductsStreamX {
     try {
       final initial = await repo.productsStream().first;
       final filtered = initial.whereType<Product>().toList().nonDeleteProducts;
-      print(initial.length);
+      // print(initial.length);
       state = AsyncValue.data(filtered);
 
       // print('✅ ProductsStream initial loaded: ${filtered.length} products');
@@ -44,7 +44,7 @@ class DiscountSectionsStreamX extends _$DiscountSectionsStreamX {
       final initial = await stream.first;
       final filtered = initial.whereType<DiscountSection>().toList();
 
-      // //print(
+      // print(
       //     '✅ GDiscountSectionsStream initial loaded: ${filtered.length} sections');
       state = AsyncValue.data(filtered);
 

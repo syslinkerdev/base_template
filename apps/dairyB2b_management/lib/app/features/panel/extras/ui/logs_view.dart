@@ -16,7 +16,7 @@ class LogsView extends HookConsumerWidget {
         appBarActions: [
           logsAsync.maybeWhen(
             error: (error, stackTrace) {
-              print(error.toString());
+              // print(error.toString());
               return SizedBox();
             },
             orElse: () => SizedBox(),

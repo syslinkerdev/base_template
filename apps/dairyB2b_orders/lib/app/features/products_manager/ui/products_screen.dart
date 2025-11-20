@@ -118,7 +118,7 @@ class ProductsScreen extends HookConsumerWidget {
                 color: appColors
                     .cS(context)
                     .surfaceTint
-                    .withValues(alpha: isSelected ? 0.8 : 0.2),
+                    .withValues(alpha: isSelected ? 0.6 : 0.2),
               ),
               child: SizedBox(
                 height: 16,
@@ -131,9 +131,9 @@ class ProductsScreen extends HookConsumerWidget {
               child: Text(
                 (item as dynamic).label,
                 style: TextStyles.h15Bold(context)
-                    ?.copyWith(color: appColors.cS(context).inversePrimary),
+                    ?.copyWith(color: appColors.cS(context).surfaceTint),
               ),
-            ),
+            ), 
           ],
         );
       },

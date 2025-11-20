@@ -10,10 +10,10 @@ extension AsyncValueError on AsyncValue {
     bool? barrierDismissible,
     FutureOr<void> Function(BuildContext dialogCtx)? defaultOnPressed,
   }) async {
-    // //print('fuck---------- ${hasError.toString()}');
+    // print('fuck---------- ${hasError.toString()}');
     if (!isLoading && hasError) {
-      // //print('AsyncValueError.showAlertDialogOnError called');
-      // //print('error : ${error.toString()}');
+      // print('AsyncValueError.showAlertDialogOnError called');
+      // print('error : ${error.toString()}');
       if (error is AppException) {
         final AppException exception = error as AppException;
         DialogsX.showErrorDialog(
@@ -22,9 +22,9 @@ extension AsyncValueError on AsyncValue {
           content: exception.message,
           barrierDismissible: barrierDismissible ?? true,
           defaultOnPressed: (dialogCtx) {
-            // //print('dddddddddddddddddd------');
+            // print('dddddddddddddddddd------');
             if (defaultOnPressed != null) {
-              // //print('if (defaultOnPressed != null) {');
+              // print('if (defaultOnPressed != null) {');
               defaultOnPressed(dialogCtx);
             } else {
               dialogCtx.close();

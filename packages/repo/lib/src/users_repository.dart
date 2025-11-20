@@ -10,7 +10,7 @@ extension UsersRepository on DairyB2bRepository {
         whereIn: [Role.admin.name],
       ),
       converter: (snapshot) {
-        // //print('Fetched Admin: ${snapshot.data()}');
+        // print('Fetched Admin: ${snapshot.data()}');
         return UserX.fromJson(snapshot.data());
       },
     );
@@ -41,7 +41,6 @@ extension UsersRepository on DairyB2bRepository {
       converter: (snapshot) {
         final data = snapshot.data();
         if (data != null) {
-          // //print(data);
           return UserX.fromJson(data);
         } else {
           return null;

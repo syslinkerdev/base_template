@@ -15,8 +15,8 @@ class SmartBasketCard extends StatelessWidget {
       (sum, item) {
         final price = (item.unitPrice ?? 0);
         final qty = item.origQty;
-        debugPrint(
-            'Item: ${item.productName}, unitPrice: $price, qty: $qty, total: ${price * qty}');
+        // debugPrint(
+        //     'Item: ${item.productName}, unitPrice: $price, qty: $qty, total: ${price * qty}');
         return sum + (price * qty);
       },
     );
@@ -34,7 +34,7 @@ class SmartBasketCard extends StatelessWidget {
                   width: context.sizeOfWidth * 0.1,
                   height: context.sizeOfHeight * 0.05,
                   decoration: BoxDecoration(
-                      color: appColors.cS(context).primaryContainer,
+                      color: appColors.cS(context).inversePrimary,
                       borderRadius: BorderRadius.circular(8)),
                   child: Center(
                     child: Text(

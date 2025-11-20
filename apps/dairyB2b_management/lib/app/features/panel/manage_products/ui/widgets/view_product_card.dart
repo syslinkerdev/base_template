@@ -55,9 +55,8 @@ class ViewModeCard extends StatelessWidget {
                 height: 60,
                 width: 60,
                 clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                decoration:
+                    BoxDecoration(borderRadius: BorderRadius.circular(8)),
                 child: FadeInImageX(imagePath: product.image),
               ),
               gapW12,
@@ -91,9 +90,9 @@ class ViewModeCard extends StatelessWidget {
                             ? ManageProductMode.view
                             : ManageProductMode.edit,
                       );
-                  if (value == 'view') {
+                  if (value.value == 'view') {
                     AppRoute.viewProductDetails.push(context);
-                  } else if (value == 'edit') {
+                  } else if (value.value == 'edit') {
                     AppRoute.manageProduct.go(context);
                   } else {
                     return;
