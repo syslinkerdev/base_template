@@ -406,12 +406,12 @@ class ManageProduct extends _$ManageProduct {
     int? packSize,
     ProductStatus? status,
   }) async {
-    //print('pric -at fun--  ${price}');
-    //print('dis --  ${discountValue}');
-    //print('min ---  ${minBuyQty}');
     // Early validation
     final validationError = _validateQuick(
-        price: price, packSize: packSize, discountValue: discountValue);
+      price: price,
+      packSize: packSize,
+      discountValue: discountValue,
+    );
     if (validationError != null) return validationError;
 
     final current = state.value;
@@ -420,23 +420,31 @@ class ManageProduct extends _$ManageProduct {
     }
 
     final product = current.product!;
-    final discount = current.discount?.copyWith(
-      discount: discountValue ?? 0,
-      status: status ?? current.discount?.status ?? ProductStatus.activePublic,
+    final oldDiscount = current.discount;
+
+    // NEW DISCOUNT OBJECT (only if old exists)
+    final newDiscount = oldDiscount?.copyWith(
+      discount: discountValue ?? oldDiscount.discount,
+      status: status ?? oldDiscount.status,
     );
+
     final user = await getUserX();
     final now = DateTime.now();
     final firestore = ref.read(firestoreServiceProvider);
 
     try {
+      // -----------------------------
+      // PRODUCT UPDATE (price / packSize / status)
+      // -----------------------------
       final productUpdate = <String, dynamic>{
         if (price != null) DbStandardFields.price: price,
         if (packSize != null) DbStandardFields.packSize: packSize,
         if (status != null)
           DbStandardFields.status: ProductStatusConverter.toJson(status),
+        DbStandardFields.updatedAt: DFU.now(),
+        DbStandardFields.updatedBy: user.fullName,
       };
 
-      // Only update if any product field is modified
       if (productUpdate.isNotEmpty) {
         await firestore.updateDocument(
           collectionPath: DbPathManager.products(),
@@ -445,13 +453,40 @@ class ManageProduct extends _$ManageProduct {
         );
       }
 
-      // Handle discount updates
-      await pushDiscountIfNeeded(
-        product: product,
-        discount: discount,
-        user: user,
-        now: now,
-      );
+      // -----------------------------
+      // DISCOUNT CHANGE CHECK
+      // -----------------------------
+      final bool isDiscountChanged = () {
+        // No previous discount and no new discount -> no change
+        if (oldDiscount == null && discountValue == null) return false;
+
+        // Old is null but new has value -> adding a discount
+        if (oldDiscount == null && discountValue != null) return true;
+
+        // If old exists:
+        if (oldDiscount != null) {
+          // Discount value changed
+          if (discountValue != null && discountValue != oldDiscount.discount)
+            return true;
+
+          // Status changed
+          if (status != null && status != oldDiscount.status) return true;
+        }
+
+        return false;
+      }();
+
+      // -----------------------------
+      // DISCOUNT UPDATE (Only if changed)
+      // -----------------------------
+      if (isDiscountChanged) {
+        await pushDiscountIfNeeded(
+          product: product,
+          discount: newDiscount,
+          user: user,
+          now: now,
+        );
+      }
 
       return null;
     } catch (e, _) {

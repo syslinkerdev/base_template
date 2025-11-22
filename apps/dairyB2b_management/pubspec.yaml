@@ -75,11 +75,13 @@ flutter_launcher_icons:
 flutter_native_splash:
   color: "#ffffff"
   image: assets/logo.png
+  fullscreen: true
   branding_bottom_padding: 24
   color_dark: "#121212"
 
   android_12:
     image: assets/logo.png
+    fullscreen: true
     icon_background_color: "#ffffff"
     icon_background_color_dark: "#121212"
   web: false

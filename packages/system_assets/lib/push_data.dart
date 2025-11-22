@@ -123,26 +123,28 @@ class _SeedAppDataPageState extends State<SeedAppDataPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              _status,
-              style: const TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton.icon(
-              icon: const Icon(Icons.cloud_upload_outlined),
-              label: Text(_isUploading ? "Uploading..." : "Upload JSON Data"),
-              style: ElevatedButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                textStyle: const TextStyle(fontSize: 16),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                _status,
+                style: const TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
               ),
-              onPressed: _isUploading ? null : _handleUpload,
-            ),
-          ],
+              const SizedBox(height: 20),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.cloud_upload_outlined),
+                label: Text(_isUploading ? "Uploading..." : "Upload JSON Data"),
+                style: ElevatedButton.styleFrom(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  textStyle: const TextStyle(fontSize: 16),
+                ),
+                onPressed: _isUploading ? null : _handleUpload,
+              ),
+            ],
+          ),
         ),
       ),
     );
