@@ -13,70 +13,74 @@ class Board extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ScaffoldX(
-      wantLeading: false,
-      title: AppEnv.companyName,
-      appToolbarHeight: -1,
-      titleStyle: TextStyles.h5Bold(context)
-          ?.copyWith(color: appColors.ms.black(context)),
-      body: RefreshIndicator(
-        onRefresh: () async => _refresh(ref),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: SpacedColumn(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            defaultHeight: 8,
-            children: [
-              NextDayOrderInfo(forManagement: true),
-              ActionButtonX(
-                icon: Icons.local_shipping_outlined,
-                iconColor: const Color(0xFF8D6E63),
-                label: '${DFU.ddMMyyyy(DFU.now())} ACTUAL DELIVERY',
-                onTap: () => AppRoute.actualDeliveryPage.push(context),
-              ),
-              RulesBtn(ref: ref),
-              AdminOrdersProgress(),
-              ActionButtonX(
-                icon: Icons.check_circle,
-                iconColor: Colors.green.shade800,
-                label: 'WHO ORDERED',
-                onTap: () => AppRoute.usersWithOrdersList.push(context,
-                    extra: UsersWithOrdersListArgs(
-                        orderFilter: AdminOrderFilter.whoOrdered)),
-              ),
-              ActionButtonX(
-                icon: Icons.cancel,
-                iconColor: Colors.red.shade800,
-                label: "WHO DIDN'T ORDER",
-                onTap: () => AppRoute.usersWithOrdersList.push(context,
-                    extra: UsersWithOrdersListArgs(
-                        orderFilter: AdminOrderFilter.whoNotOrdered)),
-              ),
-              ActionButtonX(
-                icon: Icons.layers,
-                iconColor: appColors.sc.heartChakra,
-                label: '${DFU.ddMMyyyy(DFU.nextDay())} MASTER ORDER',
-                onTap: () => AppRoute.masterOrderPage.push(context),
-              ),
-              NextDayOrder(
-                uId: ref.read(appStateXProvider).uId,
-                onPress: (isTodaysOrderExist) async {
-                  try {
-                    await AppLauncherService.openOrdersApp();
-                  } catch (e) {
-                    if (context.mounted) {
-                      showMessageSnackbar(
-                        context: context,
-                        message: e.toString(),
-                        maxLines: 2,
-                      );
+    return RunOnce(
+      onRun: () async => await checkAppUpdate(
+          appName: AppEnv.appName.toLowerCase(), context: context, ref: ref),
+      child: ScaffoldX(
+        wantLeading: false,
+        title: AppEnv.companyName,
+        appToolbarHeight: -1,
+        titleStyle: TextStyles.h5Bold(context)
+            ?.copyWith(color: appColors.ms.black(context)),
+        body: RefreshIndicator(
+          onRefresh: () async => _refresh(ref),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: SpacedColumn(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              defaultHeight: 8,
+              children: [
+                NextDayOrderInfo(forManagement: true),
+                ActionButtonX(
+                  icon: Icons.local_shipping_outlined,
+                  iconColor: const Color(0xFF8D6E63),
+                  label: '${DFU.ddMMyyyy(DFU.now())} ACTUAL DELIVERY',
+                  onTap: () => AppRoute.actualDeliveryPage.push(context),
+                ),
+                RulesBtn(ref: ref),
+                AdminOrdersProgress(),
+                ActionButtonX(
+                  icon: Icons.check_circle,
+                  iconColor: Colors.green.shade800,
+                  label: 'WHO ORDERED',
+                  onTap: () => AppRoute.usersWithOrdersList.push(context,
+                      extra: UsersWithOrdersListArgs(
+                          orderFilter: AdminOrderFilter.whoOrdered)),
+                ),
+                ActionButtonX(
+                  icon: Icons.cancel,
+                  iconColor: Colors.red.shade800,
+                  label: "WHO DIDN'T ORDER",
+                  onTap: () => AppRoute.usersWithOrdersList.push(context,
+                      extra: UsersWithOrdersListArgs(
+                          orderFilter: AdminOrderFilter.whoNotOrdered)),
+                ),
+                ActionButtonX(
+                  icon: Icons.layers,
+                  iconColor: appColors.sc.heartChakra,
+                  label: '${DFU.ddMMyyyy(DFU.nextDay())} MASTER ORDER',
+                  onTap: () => AppRoute.masterOrderPage.push(context),
+                ),
+                NextDayOrder(
+                  uId: ref.read(appStateXProvider).uId,
+                  onPress: (isTodaysOrderExist) async {
+                    try {
+                      await AppLauncherService.openOrdersApp();
+                    } catch (e) {
+                      if (context.mounted) {
+                        showMessageSnackbar(
+                          context: context,
+                          message: e.toString(),
+                          maxLines: 2,
+                        );
+                      }
                     }
-                  }
-                },
-              ),
-              ManagementSloganFooter(),
-              gapH24
-            ],
+                  },
+                ),
+                ManagementSloganFooter(),
+                gapH24
+              ],
+            ),
           ),
         ),
       ),

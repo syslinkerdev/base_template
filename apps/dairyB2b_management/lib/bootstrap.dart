@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:common/common.dart';
 import 'package:core/core.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,6 +38,7 @@ Future<void> bootstrap(Widget Function() createApp) async {
   await _initInjector();
 
   if (Platform.isAndroid || Platform.isIOS) {
+    await cleanOldApk();
     await _initOS();
   }
 

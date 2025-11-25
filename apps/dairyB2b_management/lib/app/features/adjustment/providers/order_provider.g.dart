@@ -6,7 +6,7 @@ part of 'order_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$orderProHash() => r'b8f49d25ca5a62ece6f1ce30906ef7763d5cc79b';
+String _$orderProHash() => r'2c247ac7d93b744ea62f028d9eea586035174f5a';
 
 /// See also [OrderPro].
 @ProviderFor(OrderPro)

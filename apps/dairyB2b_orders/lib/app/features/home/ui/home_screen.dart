@@ -28,53 +28,57 @@ class HomeScreen extends ConsumerWidget {
       }
     });
 
-    return ScaffoldX(
-      wantLeading: false,
-      title: AppEnv.companyName,
-      appToolbarHeight: -1,
-      titleStyle: TextStyles.h5Bold(context)
-          ?.copyWith(color: appColors.ms.black(context)),
-      // appBarActions: [AnyWereSearchBtn()],
-      body: productMaker.when(
-        data: (data) {
-          if (data == null) {
-            return const Center(
-              child: Text('null  -- empty list - Ghost'),
-            );
-          }
-          return RefreshIndicator(
-            onRefresh: () => homeRefresh(ref),
-            child: SingleChildScrollView(
-              child: SpacedColumn(
-                margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                crossAxisAlignment: CrossAxisAlignment.start,
-                defaultHeight: 12,
-                children: [
-                  NextDayOrderInfo(),
-                  TimeRemaining(),
-                  BrandsCategoriesWidget(productMaker: data),
-                  HeadingLineFade(label: 'ORDER CONTROL CENTER'),
-                  NextDayOrder(
-                    uId: ref.read(appStateXProvider).uId,
-                    onPress: (isTodaysOrderExist) {
-                      if (isTodaysOrderExist) {
-                        AppRoute.historyDetail
-                            .push(context, extra: DFU.nextDay());
-                      } else {
-                        return;
-                      }
-                    },
-                  ),
-                  SmartBasketButton(),
-                  OrderSloganFooter(),
-                ],
+    return RunOnce(
+      onRun: () async => await checkAppUpdate(
+          appName: AppEnv.appName.toLowerCase(), context: context, ref: ref),
+      child: ScaffoldX(
+        wantLeading: false,
+        title: AppEnv.companyName,
+        appToolbarHeight: -1,
+        titleStyle: TextStyles.h5Bold(context)
+            ?.copyWith(color: appColors.ms.black(context)),
+        // appBarActions: [AnyWereSearchBtn()],
+        body: productMaker.when(
+          data: (data) {
+            if (data == null) {
+              return const Center(
+                child: Text('null  -- empty list - Ghost'),
+              );
+            }
+            return RefreshIndicator(
+              onRefresh: () => homeRefresh(ref),
+              child: SingleChildScrollView(
+                child: SpacedColumn(
+                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  defaultHeight: 12,
+                  children: [
+                    NextDayOrderInfo(),
+                    TimeRemaining(),
+                    BrandsCategoriesWidget(productMaker: data),
+                    HeadingLineFade(label: 'ORDER CONTROL CENTER'),
+                    NextDayOrder(
+                      uId: ref.read(appStateXProvider).uId,
+                      onPress: (isTodaysOrderExist) {
+                        if (isTodaysOrderExist) {
+                          AppRoute.historyDetail
+                              .push(context, extra: DFU.nextDay());
+                        } else {
+                          return;
+                        }
+                      },
+                    ),
+                    SmartBasketButton(),
+                    OrderSloganFooter(),
+                  ],
+                ),
               ),
-            ),
-          );
-        },
-        error: (error, stackTrace) =>
-            ErrorScreen(error: error, onRetry: () => homeRefresh(ref)),
-        loading: () => const LoadingScreen(),
+            );
+          },
+          error: (error, stackTrace) =>
+              ErrorScreen(error: error, onRetry: () => homeRefresh(ref)),
+          loading: () => const LoadingScreen(),
+        ),
       ),
     );
   }

@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Local Files Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <!-- Location Permissions (Required for accessing user location) -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -27,8 +30,7 @@
         android:label="Dairy B2B Orders"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon"
-        android:requestLegacyExternalStorage="false"> <!-- Modern Android default is Scoped Storage,
-        set explicitly to false -->
+        android:requestLegacyExternalStorage="true">
 
         <activity
             android:name=".MainActivity"

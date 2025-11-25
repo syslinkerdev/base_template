@@ -30,6 +30,7 @@ export 'base/demand_line.dart';
 export 'base/demand_line_item.dart';
 export 'base/product_type.dart';
 export 'base/log_model.dart';
+export 'base/app_update_info.dart';
 
 // Enums
 export 'enums/enums.dart';

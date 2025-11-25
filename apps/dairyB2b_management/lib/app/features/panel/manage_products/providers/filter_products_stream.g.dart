@@ -214,7 +214,7 @@ class _FilteredProductsStreamProviderElement
       (origin as FilteredProductsStreamProvider).updatedWithin;
 }
 
-String _$forJsonXXHash() => r'a9d2a350892c983175ca8e7c12fbfe6afe9dc975';
+String _$forJsonXXHash() => r'f09a105a1756e5031bc504a5db43fc54a3ce6169';
 
 /// See also [ForJsonXX].
 @ProviderFor(ForJsonXX)

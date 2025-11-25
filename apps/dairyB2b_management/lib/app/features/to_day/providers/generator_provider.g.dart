@@ -6,7 +6,7 @@ part of 'generator_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$generatorXHash() => r'68ada59ab52055f19d0f2557735323b74a8691d3';
+String _$generatorXHash() => r'3c94f110992aa6cafc4776e7dba8197e3e13c29b';
 
 /// See also [GeneratorX].
 @ProviderFor(GeneratorX)

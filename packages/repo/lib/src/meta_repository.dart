@@ -88,4 +88,35 @@ extension MetaRepository on DairyB2bRepository {
     );
     return response;
   }
+  
+  // To fetch AppUpdateInfo info
+  Future<AppUpdateInfo?> fetchAppUpdate({required String appName}) async {
+    final response = await _service.getDocument(
+      collectionPath: DbPathManager.appData(),
+      documentId: AppUpdateInfo.docId,
+      converter: (snapshot) {
+        final data = snapshot.data();
+        if (data != null && data[AppUpdateInfo.fieldName] is List) {
+          final list = data[AppUpdateInfo.fieldName] as List;
+          return list
+              .whereType<Map<String, dynamic>>()
+              .map((json) => AppUpdateInfo.fromJson(json))
+              .toList();
+        }
+        return <AppUpdateInfo>[];
+      },
+    );
+
+    // Find the AppUpdateInfo with matching appDoc
+    final update = response.firstWhere((e) => e.appName == appName,
+        orElse: () => AppUpdateInfo.empty());
+    final updateX =
+        update.appName == AppUpdateInfo.empty().appName ? null : update;
+
+    return updateX;
+  }
 }
+
+
+
+

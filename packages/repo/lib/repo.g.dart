@@ -2143,7 +2143,7 @@ class _DemandLinesStreamProviderElement
       (origin as DemandLinesStreamProvider).forActualDelivery;
 }
 
-String _$productsStreamXHash() => r'8bba2327ce6a73fd3fbd2a079cf8b7275a78a67f';
+String _$productsStreamXHash() => r'17bc335a41f1cbeb733c9cf920d0bc2d4cdc4d1c';
 
 /// See also [ProductsStreamX].
 @ProviderFor(ProductsStreamX)

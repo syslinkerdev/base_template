@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
+import 'package:common/common.dart';
 import 'package:dairyB2b_orders/app/app_base/shared_prefs_provider.dart';
 import 'package:dairyB2b_orders/firebase_options.dart';
 import 'package:core/core.dart';
@@ -37,6 +38,7 @@ Future<void> bootstrap(Widget Function() createApp) async {
   await _initInjector();
 
   if (Platform.isAndroid || Platform.isIOS) {
+    await cleanOldApk();
     await _initOS();
   }
 
