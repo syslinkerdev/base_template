@@ -108,8 +108,10 @@ class ViewProducts extends HookConsumerWidget {
       updatedWithin: selectedUpdatedWithin.value.duration,
     );
 
-    final filteredProducts = ref.watch(filteredProvider);
-    final products = filteredProducts.valueOrNull;
+    final filteredProductsWatch = ref.watch(filteredProvider);
+    final filteredProducts = filteredProductsWatch.valueOrNull;
+    final fProductsLength =
+        filteredProducts?.length == null ? '-' : filteredProducts?.length;
 
     return ScaffoldX(
       wantLeading: true,
@@ -121,9 +123,10 @@ class ViewProducts extends HookConsumerWidget {
             return SizedBox();
           },
           orElse: () => SizedBox(),
-          data: (products) => Row(
+          data: (wProducts) => Row(
             children: [
-              Text('${products.length}', style: TextStyles.h8Gray(context)),
+              Text('$fProductsLength/${wProducts.length}',
+                  style: TextStyles.h8Gray(context)),
               Icon(Icons.inventory_2_outlined,
                   color: TextStyles.h8Gray(context)?.color,
                   size: TextStyles.h8Gray(context)?.fontSize)
@@ -147,20 +150,20 @@ class ViewProducts extends HookConsumerWidget {
                 selectedUpdatedWithin: selectedUpdatedWithin,
                 selectedProductStatus: selectedProductStatus,
               ),
-              if (filteredProducts.isLoading)
+              if (filteredProductsWatch.isLoading)
                 const LinearProgressIndicator(minHeight: 2)
               else
                 gapH2,
               Expanded(child: Builder(builder: (context) {
-                if (filteredProducts.hasError) {
+                if (filteredProductsWatch.hasError) {
                   return ErrorScreen(
-                    error: filteredProducts.error!,
+                    error: filteredProductsWatch.error!,
                     onRetry: () => refresh(ref: ref, pro: filteredProvider),
                   );
                 }
-                if (products == null)
+                if (filteredProducts == null)
                   return _buildShimmerLoading(context, mode);
-                if (products.isEmpty) {
+                if (filteredProducts.isEmpty) {
                   return _buildEmptyState(
                     context,
                     selectedBrand.value,
@@ -173,7 +176,7 @@ class ViewProducts extends HookConsumerWidget {
                 return SingleChildScrollView(
                   padding: const EdgeInsets.only(bottom: 16),
                   child: DynamicList<ProductWithDiscount>(
-                    items: products,
+                    items: filteredProducts,
                     physics: const NeverScrollableScrollPhysics(),
                     onSelect: (productWithDiscount) async {
                       await ref.watch(manageProductProvider.notifier).proUpdate(

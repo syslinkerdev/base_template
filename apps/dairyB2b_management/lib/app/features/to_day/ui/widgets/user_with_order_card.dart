@@ -180,13 +180,12 @@ class UserWithOrderCard extends ConsumerWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
                   decoration: BoxDecoration(
-                      border:
-                          Border.all(width: 2, color: appColors.sc.mutedRed),
+                      border: Border.all(width: 2, color: appColors.sc.liteRed),
                       borderRadius: BorderRadius.all(Radius.circular(100))),
                   child: Text(
                     "• NOT ORDERED",
                     style: TextStyles.h14Bold(context)
-                        ?.copyWith(color: appColors.sc.liteRed),
+                        ?.copyWith(color: appColors.sc.mutedRed),
                   ),
                 ),
                 Row(

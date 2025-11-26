@@ -29,7 +29,7 @@ extension OrderStatusApi on OrderStatus {
   Color get color => switch (this) {
         OrderStatus.placed => Colors.blue.shade700,
         OrderStatus.edited => Colors.teal.shade700,
-        OrderStatus.modified => Colors.deepPurple.shade700,
+        OrderStatus.modified => Colors.limeAccent.shade700,
         OrderStatus.adjusted => Colors.orange.shade700,
         OrderStatus.deleted => Colors.red.shade700,
       };
