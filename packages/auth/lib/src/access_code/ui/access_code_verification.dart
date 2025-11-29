@@ -57,6 +57,9 @@ class AccessCodeVerification extends HookConsumerWidget with CommonValidator {
         body: userFetch.when(
           skipLoadingOnRefresh: false,
           data: (userData) {
+            print('${userData?.phoneNumber} -----------');
+            print('${userData?.isGiven} =+==++++++++++');
+            print('${userData?.uid} =+==++++++++++');
             if (userData == null) {
               return Center(
                 child: SpacedColumn(
@@ -293,21 +296,15 @@ class AccessCodeTimer extends HookWidget {
       return timer.value?.cancel;
     }, [start]); // Add startAccessCodeTimer as a dependency
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        start
-            ? Text(
-                'Time remaining: ${seconds.value ~/ 60}:${(seconds.value % 60).toString().padLeft(2, '0')} min\'s',
-                textAlign: TextAlign.end,
-                style: TextStyles.h8Bold(context),
-              )
-            : Text(
-                'Call Your $role and get access code!',
-                textAlign: TextAlign.end,
-                style: TextStyles.h8Bold(context),
-              ),
-      ],
+    return Container(
+      alignment: Alignment.center,
+      child: start
+          ? Text(
+              'Time remaining: ${seconds.value ~/ 60}:${(seconds.value % 60).toString().padLeft(2, '0')} min\'s',
+              textAlign: TextAlign.center,
+              style: TextStyles.h8Bold(context))
+          : Text('Call Your $role and get access code!',
+              textAlign: TextAlign.center, style: TextStyles.h8Bold(context)),
     );
   }
 }
